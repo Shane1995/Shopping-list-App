@@ -1,0 +1,27 @@
+{
+	"name": "shopping-list",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "nodemon app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Shane1995/test.git"
+	},
+	"author": "Shane Linden",
+	"license": "MIT ",
+	"bugs": {
+		"url": "https://github.com/Shane1995/test/issues"
+	},
+	"homepage": "https://github.com/Shane1995/test#readme",
+	"devDependencies": {
+		"nodemon": "^2.0.2"
+	},
+	"dependencies": {
+		"ejs": "^3.0.1",
+		"express": "^4.17.1"
+	}
+}
