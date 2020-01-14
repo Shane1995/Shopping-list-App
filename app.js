@@ -5,7 +5,11 @@ const connect = require('mongoose').connect
 
 const rootDir = require('./util/path')
 
+//Routes
 const shoppingListRoutes = require('./routes/shoppingList')
+
+//Models
+const User = require('./models/user')
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -15,16 +19,38 @@ app.set('views', 'views')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(rootDir, 'public')))
+
+app.use((req, res, next) => {
+	User.findById('5e1d8eb9a64b610bac87f167')
+		.then(user => {
+			req.user = user
+			next()
+		})
+		.catch(err => console.log(err))
+})
+
 app.use(shoppingListRoutes)
 
 connect(
-	'mongodb+srv://shane_01:ShaneLinden1@cluster0-tcqav.mongodb.net/shop?retryWrites=true&w=majority',
+	'mongodb+srv://shane_01:ShaneLinden1@cluster0-tcqav.mongodb.net/shopping?retryWrites=true&w=majority',
 	{
 		useNewUrlParser: true,
 		useFindAndModify: false,
 		useUnifiedTopology: true
 	}
 ).then(() => {
+	User.findOne().then(user => {
+		if (!user) {
+			const user = new User({
+				username: 'Shane Linden',
+				email: 'shanelinden1995@gmail.com',
+				shoppingLists: {
+					shoppingList: []
+				}
+			})
+			user.save()
+		}
+	})
 	app.listen(3000, () => {
 		console.log(`Connected on port ${PORT}`)
 	})
