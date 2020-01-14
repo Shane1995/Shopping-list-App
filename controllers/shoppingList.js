@@ -1,5 +1,3 @@
-const ShoppingList = require('../models/shoppingList')
-
 exports.getShoppingList = (req, res, next) => {
 	res.render('shopping-list')
 }
