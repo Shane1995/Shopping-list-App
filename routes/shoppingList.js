@@ -1,9 +1,9 @@
 const express = require('express')
 
+const shoppingListController = require('../controllers/shoppingList')
+
 const router = express.Router()
 
-router.get('/', (req, res, next) => {
-	res.render('shopping-list')
-})
+router.get('/', shoppingListController.getShoppingList)
 
 module.exports = router
