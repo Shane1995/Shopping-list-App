@@ -4,6 +4,7 @@ const path = require('path')
 const connect = require('mongoose').connect
 
 const rootDir = require('./util/path')
+const connectionString = require('./util/connectionString')
 
 //Routes
 const shoppingListRoutes = require('./routes/shoppingList')
@@ -31,14 +32,11 @@ app.use((req, res, next) => {
 
 app.use(shoppingListRoutes)
 
-connect(
-	'mongodb+srv://shane_01:ShaneLinden1@cluster0-tcqav.mongodb.net/shopping?retryWrites=true&w=majority',
-	{
-		useNewUrlParser: true,
-		useFindAndModify: false,
-		useUnifiedTopology: true
-	}
-).then(() => {
+connect(connectionString(), {
+	useNewUrlParser: true,
+	useFindAndModify: false,
+	useUnifiedTopology: true
+}).then(() => {
 	User.findOne().then(user => {
 		if (!user) {
 			const user = new User({
