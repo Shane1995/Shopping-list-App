@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(rootDir, 'public')))
 
 app.use((req, res, next) => {
-	User.findById('5e1d8eb9a64b610bac87f167')
+	User.findById('5e202bf68e469946e0d5df8f')
 		.then(user => {
 			req.user = user
 			next()
@@ -37,13 +37,13 @@ connect(connectionString(), {
 	useFindAndModify: false,
 	useUnifiedTopology: true
 }).then(() => {
-	User.findOne().then(user => {
+	User.find().then(user => {
 		if (!user) {
 			const user = new User({
 				username: 'Shane Linden',
 				email: 'shanelinden1995@gmail.com',
 				shoppingLists: {
-					shoppingList: []
+					list: []
 				}
 			})
 			user.save()

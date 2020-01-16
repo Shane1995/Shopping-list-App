@@ -2,6 +2,11 @@
 	<h1>My Shopping List</h1>
 </div>
 
+<% if (!items) { %>
+<h4>List is Empty</h4>
+
+<%} else { %>
+
 <div class="table-responsive">
 	<table class="table table-hover">
 		<thead class="thead-dark">
@@ -14,31 +19,27 @@
 			</tr>
 		</thead>
 		<tbody>
+			<% items.forEach(item => { %>
 			<tr onclick="style ='background-color: lightBlue !important;'">
 				<td>
-					Future Life High Protein cereal new new
+					<%=item.name %>
 				</td>
-				<td>2</td>
-				<td>Woolworth</td>
+				<td><%=item.quantity %></td>
+				<td><%=item.where %></td>
 				<td class="text-center">
 					<button class="btn btn-warning">
 						<span class="glyphicon glyphicon-remove"></span>
 					</button>
 				</td>
 			</tr>
-			<tr onclick="style ='background-color: lightBlue !important;'">
-				<td>Mince</td>
-				<td>1</td>
-				<td>Spar</td>
-				<td class="text-center">
-					<button class="btn btn-warning">
-						<span class="glyphicon glyphicon-remove"></span>
-					</button>
-				</td>
-			</tr>
+
+			<% }) %>
 		</tbody>
 	</table>
 </div>
+
+<% if(items) { %>
+
 <div class="row">
 	<div class="col ml-4">
 		<button class="btn btn-success btn-lg">Save List</button>
@@ -49,3 +50,5 @@
 		</button>
 	</div>
 </div>
+
+<%} }%>
