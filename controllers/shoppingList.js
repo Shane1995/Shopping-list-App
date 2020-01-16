@@ -1,3 +1,11 @@
+/* 
+	//todo: Add Item to list 
+	todo: Remove Item from list
+	todo: Clear Current List 
+	todo: Save List 
+
+*/
+
 const ShoppingList = require('../models/shoppingList')
 
 exports.getShoppingList = (req, res, next) => {
