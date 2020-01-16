@@ -2,13 +2,13 @@
 	<h1>My Shopping List</h1>
 </div>
 
-<% if (!items) { %>
+<% if (items.length <= 0) { %>
 <h4>List is Empty</h4>
 
 <%} else { %>
 
 <div class="table-responsive">
-	<table class="table table-hover">
+	<table class="table table-hover mb-5">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Item Names</th>
@@ -26,10 +26,14 @@
 				</td>
 				<td><%=item.quantity %></td>
 				<td><%=item.where %></td>
+
 				<td class="text-center">
-					<button class="btn btn-warning">
-						<span class="glyphicon glyphicon-remove"></span>
-					</button>
+					<form action="/delete-item" method="POST">
+						<input type="hidden" name="id" value="<%=item._id %>" />
+						<button type="submit" class="btn btn-warning">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</form>
 				</td>
 			</tr>
 
@@ -38,17 +42,29 @@
 	</table>
 </div>
 
-<% if(items) { %>
-
 <div class="row">
-	<div class="col ml-4">
-		<button class="btn btn-success btn-lg">Save List</button>
-	</div>
+	<form action="/save-list" method="POST">
+		<div class="col ml-4">
+			<input
+				type="text"
+				name="name"
+				id="name"
+				placeholder="Name of List"
+			/>
+			<input type="hidden" name="listId" value="<%= listId%>" />
+			<button type="submit" class="btn btn-success btn-lg">
+				Save List
+			</button>
+		</div>
+	</form>
 	<div class="col text-right mr-4">
-		<button class="btn btn-danger btn-lg pull-right">
+		<a
+			href="/clear-list/<%= listId%>"
+			class="btn btn-danger btn-lg pull-right"
+		>
 			Clear List
-		</button>
+		</a>
 	</div>
 </div>
 
-<%} }%>
+<%}%>
