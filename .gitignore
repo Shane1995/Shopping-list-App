@@ -1,2 +1,4 @@
 node_modules
 connectionString.js
+.env
+.vscode 
