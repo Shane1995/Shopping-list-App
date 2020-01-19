@@ -4,7 +4,7 @@ const path = require('path')
 const connect = require('mongoose').connect
 const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session)
-const env = require('dotenv')
+require('dotenv').config()
 
 const rootDir = require('./util/path')
 
@@ -14,7 +14,6 @@ const shoppingListRoutes = require('./routes/shoppingList')
 //Models
 const User = require('./models/user')
 
-env.config()
 const app = express()
 const PORT = 3000 || process.env.PORT
 
