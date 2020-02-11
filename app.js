@@ -58,7 +58,7 @@ connect(connectionString, {
 		if (!user) {
 			const user = new User({
 				username: 'Shane Linden',
-				email: 'shanelinden1995@gmail.com',
+				email: 'shanelinden1@gmail.com',
 				shoppingLists: {
 					list: []
 				}
